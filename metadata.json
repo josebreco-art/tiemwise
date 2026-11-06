@@ -1,0 +1,11 @@
+{
+  "name": "Remix RELOJ MARCADOR  CERVANTES, VERSION AI STUDIO 2026 AGOSTO 30",
+  "description": "RELOJ MARCADOR  CERVANTES, VERSION AI STUDIO 2026 setiembre 07",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,166 @@
+
+{
+  "entities": {
+    "Restaurant": {
+      "title": "Restaurant",
+      "type": "object",
+      "description": "Represents a restaurant location.",
+      "properties": {
+        "name": { "type": "string" },
+        "address": { "type": "string" },
+        "latitude": { "type": "number" },
+        "longitude": { "type": "number" },
+        "type": { "type": "string", "enum": ["Punto de Venta", "CEDI"], "description": "Define las reglas de cálculo de horas." }
+      },
+      "required": ["name", "type"]
+    },
+    "Employee": {
+      "title": "Employee",
+      "type": "object",
+      "description": "Represents an employee.",
+      "properties": {
+        "name": { "type": "string" },
+        "cedula": { "type": "string" },
+        "phone": { "type": "string" },
+        "hourlyRate": { "type": "number", "description": "Tarifa estándar para Puntos de Venta." },
+        "hourlyRateCedi": { "type": "number", "description": "Tarifa especial para trabajo pesado en CEDI." },
+        "cajaRetentionRate": { "type": "number" },
+        "initialLoanAmount": { "type": "number" },
+        "loanAmount": { "type": "number" },
+        "loanPayment": { "type": "number" },
+        "savingsAmount": { "type": "number" },
+        "savingsPayment": { "type": "number" },
+        "vacationDaysAccrued": { "type": "number" },
+        "vacationDaysTaken": { "type": "number" },
+        "faceDescriptor": { "type": "string" },
+        "manualSalaries": { "type": "object" }
+      },
+      "required": ["name", "cedula", "hourlyRate"]
+    },
+    "TimeRecord": {
+      "title": "TimeRecord",
+      "type": "object",
+      "description": "Represents a clock-in/out record with break tracking.",
+      "properties": {
+        "employeeId": { "type": "string" },
+        "locationId": { "type": "string" },
+        "clockIn": { "type": "string", "format": "date-time" },
+        "clockOut": { "type": "string", "format": "date-time" },
+        "approved": { "type": "boolean" },
+        "breaks": { "type": "array", "description": "Array of food and coffee break records" },
+        "totalBreakMinutes": { "type": "number" },
+        "allowedBreakMinutes": { "type": "number" },
+        "excessBreakMinutes": { "type": "number" },
+        "shiftHoursCategory": { "type": "string" }
+      }
+    },
+    "PayslipRecord": {
+      "title": "PayslipRecord",
+      "type": "object",
+      "description": "Historical record of a generated payslip.",
+      "properties": {
+        "employeeId": { "type": "string" },
+        "employeeName": { "type": "string" },
+        "startDate": { "type": "string", "format": "date-time" },
+        "endDate": { "type": "string", "format": "date-time" },
+        "type": { "type": "string", "enum": ["regular", "vacation"] },
+        "grossSalary": { "type": "number" },
+        "netSalary": { "type": "number" },
+        "deductions": { "type": "object" },
+        "breakExcessMinutes": { "type": "number" },
+        "hoursBreakdown": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Schedule": {
+      "title": "Schedule",
+      "type": "object",
+      "description": "Represents a weekly shift schedule.",
+      "properties": {
+        "employeeId": { "type": "string" },
+        "locationId": { "type": "string" },
+        "dayOfWeek": { "type": "string" },
+        "startTime": { "type": "string" },
+        "endTime": { "type": "string" },
+        "weekType": { "type": "string", "enum": ["Semana 1", "Semana 2"] }
+      }
+    },
+    "Holiday": {
+      "title": "Holiday",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" }
+      }
+    },
+    "ManualAdjustment": {
+      "title": "ManualAdjustment",
+      "type": "object",
+      "description": "Digital card for manual time adjustments filled by Admin.",
+      "properties": {
+        "employeeId": { "type": "string" },
+        "employeeName": { "type": "string" },
+        "cedula": { "type": "string" },
+        "date": { "type": "string" },
+        "clockIn": { "type": "string" },
+        "clockOut": { "type": "string" },
+        "totalHours": { "type": "number" },
+        "regularHours": { "type": "number" },
+        "overtimeHours": { "type": "number" },
+        "locationId": { "type": "string" },
+        "reason": { "type": "string" },
+        "supervisorSignature": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "AppSettings": {
+      "title": "AppSettings",
+      "type": "object",
+      "properties": {
+        "logoUrl": { "type": "string" },
+        "firstDayOfWeek1": { "type": "string" },
+        "adminPassword": { "type": "string" },
+        "userPassword": { "type": "string" },
+        "userPermissions": { "type": "object" }
+      }
+    }
+  },
+  "auth": {
+    "providers": ["anonymous", "password"]
+  },
+  "firestore": {
+    "/employees/{id}": {
+      "schema": { "$ref": "#/backend/entities/Employee" },
+      "description": "Flat list of employees."
+    },
+    "/locations/{id}": {
+      "schema": { "$ref": "#/backend/entities/Restaurant" },
+      "description": "Flat list of locations."
+    },
+    "/timeRecords/{id}": {
+      "schema": { "$ref": "#/backend/entities/TimeRecord" },
+      "description": "Flat list of all shifts."
+    },
+    "/payslips/{id}": {
+      "schema": { "$ref": "#/backend/entities/PayslipRecord" },
+      "description": "Historical saved payslips."
+    },
+    "/schedules/{id}": {
+      "schema": { "$ref": "#/backend/entities/Schedule" },
+      "description": "Weekly rotation schedules."
+    },
+    "/holidays/{id}": {
+      "schema": { "$ref": "#/backend/entities/Holiday" },
+      "description": "Public holidays for payroll calculation."
+    },
+    "/manualAdjustments/{id}": {
+      "schema": { "$ref": "#/backend/entities/ManualAdjustment" },
+      "description": "Requests for manual time adjustments."
+    },
+    "/appSettings/{id}": {
+      "schema": { "$ref": "#/backend/entities/AppSettings" },
+      "description": "Global application configuration."
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "placeholderImages": [
+    {
+      "id": "location-1",
+      "description": "A modern restaurant interior",
+      "imageUrl": "https://images.unsplash.com/photo-1667388969250-1c7220bf3f37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZXN0YXVyYW50JTIwaW50ZXJpb3J8ZW58MHx8fHwxNzY3MDE4NjA4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "restaurant interior"
+    },
+    {
+      "id": "location-2",
+      "description": "A cozy cafe setting",
+      "imageUrl": "https://images.unsplash.com/photo-1620466376076-52ce523b6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjYWZlJTIwc2V0dGluZ3xlbnwwfHx8fDE3NjY5OTgyMzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cafe setting"
+    },
+    {
+      "id": "location-3",
+      "description": "An upscale dining room",
+      "imageUrl": "https://images.unsplash.com/photo-1617806118233-18e1de247200?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxkaW5pbmclMjByb29tfGVufDB8fHx8MTc2NzA5Nzk0Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dining room"
+    },
+    {
+      "id": "location-4",
+      "description": "A bright and airy bistro",
+      "imageUrl": "https://images.unsplash.com/photo-1608020333820-e68f3edb92eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxiaXN0cm8lMjBpbnRlcmlvcnxlbnwwfHx8fDE3NjcwOTc5NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "bistro interior"
+    }
+  ]
+}
